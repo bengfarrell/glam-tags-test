@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-camera></glam-camera>
+
+@element glam-camera
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-camera
+-->
+<polymer-element name="glam-camera" attributes="">
+  <script>
+    Polymer({
+      /**
+       * camera
+       *
+       * @attribute camera
+       * @type threejs camera
+       */
+      camera: null,
+
+      ready: function() {
+        this.camera = new THREE.PerspectiveCamera( 70, 800/800, 1, 1000 );
+        this.camera.position.z = 400;
+      }
+    });
+
+  </script>
+
+</polymer-element>

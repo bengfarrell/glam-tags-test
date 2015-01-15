@@ -1,0 +1,41 @@
+<link rel="import" href="../polymer/polymer.html">
+<script src="../threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-texture></glam-texture>
+
+@element glam-texture
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-texture
+-->
+<polymer-element name="glam-texture" attributes="uri">
+  <script>
+    Polymer({
+      /**
+       * texture image uri
+       *
+       * @attribute uri
+       * @type string
+       * @default ''
+       */
+      uri: '',
+
+      /**
+       * texture
+       */
+      texture: null,
+
+      ready: function() {
+        if (this.uri) {
+          this.texture = THREE.ImageUtils.loadTexture( 'textures/crate.gif' );
+        }
+      }
+    });
+  </script>
+
+</polymer-element>

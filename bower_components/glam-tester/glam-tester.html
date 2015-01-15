@@ -1,0 +1,56 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../glam-canvas/glam-canvas.html">
+<link rel="import" href="../glam-primitive/glam-primitive.html">
+<script src="../threejs/build/three.min.js"></script>
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-tester></glam-tester>
+
+@element glam-tester
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-tester
+-->
+<polymer-element name="glam-tester" attributes="camera scene renderer mesh">
+
+  <template>
+
+    <link rel="stylesheet" href="glam-tester.css" />
+
+    <content>
+      <glam-canvas id="canvas" width="600" height="600">
+        <glam-scene>
+          <glam-camera />
+          <glam-primitive id="cube" width="200" height="200" depth="200">
+            <glam-material>
+              <glam-texture uri="textures/crate.gif" />
+            </glam-material>
+          </glam-primitive>
+        </glam-scene>
+      </glam-canvas>
+    </content>
+
+  </template>
+
+  <script>
+
+    Polymer({
+      ready: function() {
+        this.async(this.animate);
+      },
+
+      animate: function() {
+        this.$.cube.mesh.rotation.x += 0.005;
+        this.$.cube.mesh.rotation.y += 0.01;
+        this.$.canvas.update();
+        this.async(this.animate);
+      }
+
+    });
+
+  </script>
+
+</polymer-element>

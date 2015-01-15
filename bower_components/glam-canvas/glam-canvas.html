@@ -1,0 +1,71 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../glam-scene/glam-scene.html">
+<script src="../threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-canvas></glam-canvas>
+
+@element glam-canvas
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-canvas
+-->
+<polymer-element name="glam-canvas" attributes="width height">
+  <template></template>
+  <script>
+    Polymer({
+      /**
+       * threejs renderer
+       *
+       * @property renderer
+       * @type object
+       */
+      renderer: null,
+
+      /**
+       * width of canvas
+       *
+       * @attribute width
+       * @type integer
+       * @default 100
+       */
+      width: 100,
+
+      /**
+       * height of canvas
+       *
+       * @attribute height
+       * @type integer
+       * @default 100
+       */
+      height: 100,
+
+      /**
+       * threejs scene
+       *
+       * @property scene
+       * @type object
+       */
+      scene: null,
+
+      ready: function() {
+        this.renderer = new THREE.WebGLRenderer();
+        this.renderer.setSize( this.width, this.height );
+        this.shadowRoot.appendChild( this.renderer.domElement );
+        this.scene = this.querySelectorAll('glam-scene');
+      },
+
+      /**
+       * update 3D render scene
+       */
+      update: function() {
+        this.renderer.render( this.scene[0].scene, this.scene[0].getCurrentCamera().camera );
+      }
+    });
+
+  </script>
+</polymer-element>

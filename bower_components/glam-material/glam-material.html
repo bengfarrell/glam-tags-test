@@ -1,0 +1,45 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../glam-texture/glam-texture.html">
+<script src="../threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-material></glam-material>
+
+@element glam-material
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-material
+-->
+<polymer-element name="glam-material" attributes="material">
+  <script>
+
+    Polymer({
+      /**
+       * texture
+       *
+       * @attribute threejs material
+       * @type material
+       */
+      texture: null,
+
+      /**
+      * material
+      *
+      * @attribute threejs material
+      * @type material
+      */
+      material: null,
+
+      ready: function() {
+        this.texture = this.querySelectorAll('glam-texture');
+        this.material = new THREE.MeshBasicMaterial( { map: this.texture[0].texture } );
+      }
+    });
+
+  </script>
+
+</polymer-element>

@@ -1,0 +1,53 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../glam-object/glam-object.html">
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-primitive></glam-primitive>
+
+@element glam-primitive
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-primitive
+-->
+<polymer-element name="glam-primitive" attributes="type" extends="glam-object">
+  <script>
+    Polymer({
+      /**
+       * The type of primitive we are creating
+       *
+       * @attribute type
+       * @type string
+       * @default 'cube'
+       */
+      type: 'cube',
+
+      ready: function() {
+        this.initPrimitive();
+        this.initMaterial();
+        this.initMesh();
+      },
+
+      /**
+       * initialize the primitive
+       *
+       * @method initPrimitive
+       */
+      initPrimitive: function() {
+        switch (this.type) {
+          case 'cube':
+            this.geometry = new THREE.BoxGeometry( this.width, this.height, this.depth );
+            break;
+
+          default:
+            this.geometry = new THREE.BoxGeometry( this.width, this.height, this.depth );
+        }
+      }
+    });
+
+  </script>
+
+</polymer-element>

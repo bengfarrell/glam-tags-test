@@ -1,0 +1,81 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../glam-object/glam-object.html">
+<link rel="import" href="../glam-camera/glam-camera.html">
+<script src="../threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-scene></glam-scene>
+
+@element glam-scene
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-scene
+-->
+<polymer-element name="glam-scene" attributes="scene currentCameraIndex">
+
+  <script>
+    Polymer({
+      /**
+       * `threejs scene
+       *
+       * @property scene
+       * @type scene
+       */
+      scene: null,
+
+      /**
+       * `threejs camera list
+       *
+       * @property cameras
+       * @type array
+       */
+      cameras: [],
+
+      /**
+       * `threejs objects list
+       *
+       * @property objects
+       * @type array
+       */
+      objects: [],
+
+      /**
+       * current camera index
+       *
+       * @property currentCameraIndex
+       * @type integer
+       */
+      currentCameraIndex: 0,
+
+      ready: function() {
+        this.scene = new THREE.Scene();
+        this.cameras = this.querySelectorAll('glam-camera');
+        this.objects = this.querySelectorAll('glam-primitive, glam-object');
+
+        for (var c in this.objects) {
+          this.scene.add(this.objects[c].mesh);
+        }
+      },
+
+      /**
+       * get the current camera
+       *
+       * @method getCurrentCamera
+       * @return {Object} camera component
+       */
+      getCurrentCamera: function() {
+        if (this.cameras.length == 0) { return; }
+        if (this.currentCameraIndex >= this.cameras.length) {
+          this.currentCameraIndex = 0;
+        }
+        return this.cameras[this.currentCameraIndex];
+      }
+    });
+
+  </script>
+
+</polymer-element>

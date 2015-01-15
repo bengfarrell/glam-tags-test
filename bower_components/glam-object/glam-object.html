@@ -1,0 +1,99 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../glam-material/glam-material.html">
+<script src="../threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-object></glam-object>
+
+@element glam-object
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-object
+-->
+<polymer-element name="glam-object" attributes="mesh scene width height depth">
+  <script>
+    Polymer({
+      /**
+       * width of object
+       *
+       * @attribute width
+       * @type integer
+       */
+      width: 10,
+
+      /**
+       * height of object
+       *
+       * @attribute height
+       * @type integer
+       */
+      height: 10,
+
+      /**
+       * depth of object
+       *
+       * @attribute depth
+       * @type integer
+       */
+      depth: 10,
+
+      /**
+       * threejs mesh
+       *
+       * @attribute mesh
+       * @type threejs mesh object
+       */
+      mesh: null,
+
+      /**
+       * threejs geometry
+       *
+       * @attribute geometry
+       * @type threejs geometry object
+       */
+      geometry: null,
+
+      /**
+       * children of this object
+       *
+       * @attribute children
+       * @type array
+       * @default []
+       */
+      //children: [],
+
+      ready: function() {
+        this.initMaterial();
+        this.initMesh();
+      },
+
+      /**
+       * initialize the material
+       *
+       * @method initMaterial
+       */
+      initMaterial: function() {
+        this.material = this.querySelectorAll('glam-material');
+      },
+
+      /**
+       * initialize the mesh
+       *
+       * @method initMesh
+       */
+      initMesh: function() {
+        if (this.geometry) {
+          this.mesh = new THREE.Mesh( this.geometry, this.material[0].material );
+        }
+      }
+
+
+    });
+
+  </script>
+
+</polymer-element>
