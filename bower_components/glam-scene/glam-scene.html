@@ -73,6 +73,14 @@ Element providing solution to no problem in particular.
           this.currentCameraIndex = 0;
         }
         return this.cameras[this.currentCameraIndex];
+      },
+
+      /**
+       * get threejs scene
+       * @returns {scene}
+       */
+      get: function() {
+        return this.scene;
       }
     });
 

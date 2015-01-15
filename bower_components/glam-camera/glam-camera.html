@@ -12,9 +12,18 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://polymerlabs.github.io/glam-camera
 -->
-<polymer-element name="glam-camera" attributes="">
+<polymer-element name="glam-camera" attributes="zpos">
   <script>
     Polymer({
+      /**
+       * z position
+       *
+       * @attribute zpos
+       * @type integer
+       * @default 400
+       */
+      zpos: 0,
+
       /**
        * camera
        *
@@ -25,7 +34,15 @@ Element providing solution to no problem in particular.
 
       ready: function() {
         this.camera = new THREE.PerspectiveCamera( 70, 800/800, 1, 1000 );
-        this.camera.position.z = 400;
+        this.camera.position.z = this.zpos;
+      },
+
+      /**
+       * get threejs instance
+       * @returns {*}
+       */
+      get: function() {
+        return this.camera;
       }
     });
 

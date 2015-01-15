@@ -34,6 +34,14 @@ Element providing solution to no problem in particular.
         if (this.uri) {
           this.texture = THREE.ImageUtils.loadTexture( 'textures/crate.gif' );
         }
+      },
+
+      /**
+       * get threejs texture object
+       * @returns {null}
+       */
+      get: function() {
+        return this.texture;
       }
     });
   </script>

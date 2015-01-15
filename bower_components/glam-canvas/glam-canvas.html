@@ -56,14 +56,14 @@ Element providing solution to no problem in particular.
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( this.width, this.height );
         this.shadowRoot.appendChild( this.renderer.domElement );
-        this.scene = this.querySelectorAll('glam-scene');
+        this.scene = this.querySelectorAll('glam-scene')[0];
       },
 
       /**
        * update 3D render scene
        */
       update: function() {
-        this.renderer.render( this.scene[0].scene, this.scene[0].getCurrentCamera().camera );
+        this.renderer.render( this.scene.get(), this.scene.getCurrentCamera().get() );
       }
     });
 
