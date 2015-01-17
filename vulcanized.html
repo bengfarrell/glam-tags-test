@@ -1,0 +1,772 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Polymer WebApp</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css styles/main.css -->
+    <!-- endbuild-->
+
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <!-- build:vulcanized elements/elements.vulcanized.html -->
+    <style shim-shadowdom="">
+/*******************************
+          Flex Layout
+*******************************/
+
+html /deep/ [layout][horizontal], html /deep/ [layout][vertical] {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+html /deep/ [layout][horizontal][inline], html /deep/ [layout][vertical][inline] {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+html /deep/ [layout][horizontal] {
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+html /deep/ [layout][horizontal][reverse] {
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+html /deep/ [layout][vertical] {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+html /deep/ [layout][vertical][reverse] {
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+html /deep/ [layout][wrap] {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+html /deep/ [layout][wrap-reverse] {
+  -ms-flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+html /deep/ [flex] {
+  -ms-flex: 1 1 0.000000001px;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-basis: 0.000000001px;
+  flex-basis: 0.000000001px;
+}
+
+html /deep/ [vertical][layout] > [flex][auto-vertical], html /deep/ [vertical][layout]::shadow [flex][auto-vertical] {
+  -ms-flex: 1 1 auto;
+  -webkit-flex-basis: auto;
+  flex-basis: auto;
+}
+
+html /deep/ [flex][auto] {
+  -ms-flex: 1 1 auto;
+  -webkit-flex-basis: auto;
+  flex-basis: auto;
+}
+
+html /deep/ [flex][none] {
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+}
+
+html /deep/ [flex][one] {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+html /deep/ [flex][two] {
+  -ms-flex: 2;
+  -webkit-flex: 2;
+  flex: 2;
+}
+
+html /deep/ [flex][three] {
+  -ms-flex: 3;
+  -webkit-flex: 3;
+  flex: 3;
+}
+
+html /deep/ [flex][four] {
+  -ms-flex: 4;
+  -webkit-flex: 4;
+  flex: 4;
+}
+
+html /deep/ [flex][five] {
+  -ms-flex: 5;
+  -webkit-flex: 5;
+  flex: 5;
+}
+
+html /deep/ [flex][six] {
+  -ms-flex: 6;
+  -webkit-flex: 6;
+  flex: 6;
+}
+
+html /deep/ [flex][seven] {
+  -ms-flex: 7;
+  -webkit-flex: 7;
+  flex: 7;
+}
+
+html /deep/ [flex][eight] {
+  -ms-flex: 8;
+  -webkit-flex: 8;
+  flex: 8;
+}
+
+html /deep/ [flex][nine] {
+  -ms-flex: 9;
+  -webkit-flex: 9;
+  flex: 9;
+}
+
+html /deep/ [flex][ten] {
+  -ms-flex: 10;
+  -webkit-flex: 10;
+  flex: 10;
+}
+
+html /deep/ [flex][eleven] {
+  -ms-flex: 11;
+  -webkit-flex: 11;
+  flex: 11;
+}
+
+html /deep/ [flex][twelve] {
+  -ms-flex: 12;
+  -webkit-flex: 12;
+  flex: 12;
+}
+
+/* alignment in cross axis */
+
+html /deep/ [layout][start] {
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+html /deep/ [layout][center], html /deep/ [layout][center-center] {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+html /deep/ [layout][end] {
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+
+/* alignment in main axis */
+
+html /deep/ [layout][start-justified] {
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+html /deep/ [layout][center-justified], html /deep/ [layout][center-center] {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+html /deep/ [layout][end-justified] {
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+html /deep/ [layout][around-justified] {
+  -ms-flex-pack: distribute;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+html /deep/ [layout][justified] {
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+/* self alignment */
+
+html /deep/ [self-start] {
+  -ms-align-self: flex-start;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+}
+
+html /deep/ [self-center] {
+  -ms-align-self: center;
+  -webkit-align-self: center;
+  align-self: center;
+}
+
+html /deep/ [self-end] {
+  -ms-align-self: flex-end;
+  -webkit-align-self: flex-end;
+  align-self: flex-end;
+}
+
+html /deep/ [self-stretch] {
+  -ms-align-self: stretch;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+}
+
+/*******************************
+          Other Layout
+*******************************/
+
+html /deep/ [block] {
+  display: block;
+}
+
+/* ie support for hidden */
+html /deep/ [hidden] {
+  display: none !important;
+}
+
+html /deep/ [relative] {
+  position: relative;
+}
+
+html /deep/ [fit] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body[fullbleed] {
+  margin: 0;
+  height: 100vh;
+}
+
+/*******************************
+            Other
+*******************************/
+
+html /deep/ [segment], html /deep/ segment {
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1em 0.5em;
+  padding: 1em;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 5px 5px 5px 5px;
+}
+
+</style>
+
+<script src="bower_components/polymer/polymer.js"></script>
+
+    
+
+
+
+
+<script src="bower_components/threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-texture></glam-texture>
+
+@element glam-texture
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-texture
+-->
+
+<script src="bower_components/threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-material></glam-material>
+
+@element glam-material
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-material
+-->
+
+<script src="bower_components/threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-object></glam-object>
+
+@element glam-object
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-object
+-->
+
+
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-camera></glam-camera>
+
+@element glam-camera
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-camera
+-->
+
+
+
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-primitive></glam-primitive>
+
+@element glam-primitive
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-primitive
+-->
+
+<script src="bower_components/threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-scene></glam-scene>
+
+@element glam-scene
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-scene
+-->
+
+<script src="bower_components/threejs/build/three.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <glam-canvas></glam-canvas>
+
+@element glam-canvas
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/glam-canvas
+-->
+
+    
+    <!-- endbuild-->
+</head>
+
+<body><div hidden="">
+<polymer-element name="glam-texture" attributes="uri" assetpath="bower_components/glam-texture/">
+  <script>
+    Polymer('glam-texture',{
+      /**
+       * texture image uri
+       *
+       * @attribute uri
+       * @type string
+       * @default ''
+       */
+      uri: '',
+
+      /**
+       * texture
+       */
+      texture: null,
+
+      ready: function() {
+        if (this.uri) {
+          this.texture = THREE.ImageUtils.loadTexture( this.uri );
+        }
+      },
+
+      /**
+       * get threejs texture object
+       * @returns {null}
+       */
+      get: function() {
+        return this.texture;
+      }
+    });
+  </script>
+
+</polymer-element>
+<polymer-element name="glam-material" attributes="material" assetpath="bower_components/glam-material/">
+  <script>
+
+    Polymer('glam-material',{
+      /**
+       * texture
+       *
+       * @attribute threejs material
+       * @type material
+       */
+      texture: null,
+
+      /**
+      * material
+      *
+      * @attribute threejs material
+      * @type material
+      */
+      material: null,
+
+      ready: function() {
+        this.texture = this.querySelectorAll('glam-texture');
+        if (this.texture.length > 0) {
+          this.material = new THREE.MeshBasicMaterial( { map: this.texture[0].get() } );
+        } else {
+          this.material = new THREE.MeshBasicMaterial();
+        }
+      },
+
+      get: function() {
+        return this.material;
+      }
+    });
+
+  </script>
+
+</polymer-element>
+<polymer-element name="glam-object" attributes="mesh scene width height depth" assetpath="bower_components/glam-object/">
+  <script>
+    Polymer('glam-object',{
+      /**
+       * width of object
+       *
+       * @attribute width
+       * @type integer
+       */
+      width: 10,
+
+      /**
+       * height of object
+       *
+       * @attribute height
+       * @type integer
+       */
+      height: 10,
+
+      /**
+       * depth of object
+       *
+       * @attribute depth
+       * @type integer
+       */
+      depth: 10,
+
+      /**
+       * threejs mesh
+       *
+       * @attribute mesh
+       * @type threejs mesh object
+       */
+      mesh: null,
+
+      /**
+       * threejs geometry
+       *
+       * @attribute geometry
+       * @type threejs geometry object
+       */
+      geometry: null,
+
+      /**
+       * children of this object
+       *
+       * @attribute children
+       * @type array
+       * @default []
+       */
+      //children: [],
+
+      ready: function() {
+        this.initMaterial();
+        this.initMesh();
+      },
+
+      /**
+       * initialize the material
+       *
+       * @method initMaterial
+       */
+      initMaterial: function() {
+        this.material = this.querySelectorAll('glam-material')[0];
+      },
+
+      /**
+       * initialize the mesh
+       *
+       * @method initMesh
+       */
+      initMesh: function() {
+        if (this.geometry) {
+          this.mesh = new THREE.Mesh( this.geometry, this.material.get() );
+        }
+      }
+
+
+    });
+
+  </script>
+
+</polymer-element>
+
+<polymer-element name="glam-camera" attributes="zpos" assetpath="bower_components/glam-camera/">
+  <script>
+    Polymer('glam-camera',{
+      /**
+       * z position
+       *
+       * @attribute zpos
+       * @type integer
+       * @default 400
+       */
+      zpos: 0,
+
+      /**
+       * camera
+       *
+       * @attribute camera
+       * @type threejs camera
+       */
+      camera: null,
+
+      ready: function() {
+        this.camera = new THREE.PerspectiveCamera( 70, 800/800, 1, 1000 );
+        this.camera.position.z = this.zpos;
+      },
+
+      /**
+       * get threejs instance
+       * @returns {*}
+       */
+      get: function() {
+        return this.camera;
+      }
+    });
+
+  </script>
+
+</polymer-element>
+
+<polymer-element name="glam-primitive" attributes="type" extends="glam-object" assetpath="bower_components/glam-primitive/">
+  <script>
+    Polymer('glam-primitive',{
+      /**
+       * The type of primitive we are creating
+       *
+       * @attribute type
+       * @type string
+       * @default 'cube'
+       */
+      type: 'cube',
+
+      ready: function() {
+        this.initPrimitive();
+        this.initMaterial();
+        this.initMesh();
+      },
+
+      /**
+       * initialize the primitive
+       *
+       * @method initPrimitive
+       */
+      initPrimitive: function() {
+        switch (this.type) {
+          case 'cube':
+            this.geometry = new THREE.BoxGeometry( this.width, this.height, this.depth );
+            break;
+
+          default:
+            this.geometry = new THREE.BoxGeometry( this.width, this.height, this.depth );
+        }
+      }
+    });
+
+  </script>
+
+</polymer-element>
+<polymer-element name="glam-scene" attributes="scene currentCameraIndex" assetpath="bower_components/glam-scene/">
+
+  <script>
+    Polymer('glam-scene',{
+      /**
+       * `threejs scene
+       *
+       * @property scene
+       * @type scene
+       */
+      scene: null,
+
+      /**
+       * `threejs camera list
+       *
+       * @property cameras
+       * @type array
+       */
+      cameras: [],
+
+      /**
+       * `threejs objects list
+       *
+       * @property objects
+       * @type array
+       */
+      objects: [],
+
+      /**
+       * current camera index
+       *
+       * @property currentCameraIndex
+       * @type integer
+       */
+      currentCameraIndex: 0,
+
+      ready: function() {
+        this.scene = new THREE.Scene();
+        this.cameras = this.querySelectorAll('glam-camera');
+        this.objects = this.querySelectorAll('glam-primitive, glam-object');
+
+        for (var c in this.objects) {
+          if (this.objects[c].mesh) {
+            this.scene.add(this.objects[c].mesh);
+          }
+        }
+      },
+
+      /**
+       * get the current camera
+       *
+       * @method getCurrentCamera
+       * @return {Object} camera component
+       */
+      getCurrentCamera: function() {
+        if (this.cameras.length == 0) { return; }
+        if (this.currentCameraIndex >= this.cameras.length) {
+          this.currentCameraIndex = 0;
+        }
+        return this.cameras[this.currentCameraIndex];
+      },
+
+      /**
+       * get threejs scene
+       * @returns {scene}
+       */
+      get: function() {
+        return this.scene;
+      }
+    });
+
+  </script>
+
+</polymer-element>
+<polymer-element name="glam-canvas" attributes="width height" assetpath="bower_components/glam-canvas/">
+  <template></template>
+  <script>
+    Polymer('glam-canvas',{
+      /**
+       * threejs renderer
+       *
+       * @property renderer
+       * @type object
+       */
+      renderer: null,
+
+      /**
+       * width of canvas
+       *
+       * @attribute width
+       * @type integer
+       * @default 100
+       */
+      width: 100,
+
+      /**
+       * height of canvas
+       *
+       * @attribute height
+       * @type integer
+       * @default 100
+       */
+      height: 100,
+
+      /**
+       * threejs scene
+       *
+       * @property scene
+       * @type object
+       */
+      scene: null,
+
+      ready: function() {
+        this.renderer = new THREE.WebGLRenderer();
+        this.renderer.setSize( this.width, this.height );
+        this.shadowRoot.appendChild( this.renderer.domElement );
+        this.scene = this.querySelectorAll('glam-scene')[0];
+      },
+
+      /**
+       * update 3D render scene
+       */
+      update: function() {
+        this.renderer.render( this.scene.get(), this.scene.getCurrentCamera().get() );
+      }
+    });
+
+  </script>
+</polymer-element>
+</div>
+</body></html>
