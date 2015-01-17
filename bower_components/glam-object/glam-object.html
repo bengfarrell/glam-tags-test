@@ -87,6 +87,7 @@ Element providing solution to no problem in particular.
        */
       initMesh: function() {
         if (this.geometry) {
+          console.log(this.material);
           this.mesh = new THREE.Mesh( this.geometry, this.material.get() );
         }
       }
