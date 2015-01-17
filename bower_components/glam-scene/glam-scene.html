@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../glam-object/glam-object.html">
 <link rel="import" href="../glam-camera/glam-camera.html">
+<link rel="import" href="../glam-primitive/glam-primitive.html">
 <script src="../threejs/build/three.min.js"></script>
 
 <!--
@@ -57,7 +58,9 @@ Element providing solution to no problem in particular.
         this.objects = this.querySelectorAll('glam-primitive, glam-object');
 
         for (var c in this.objects) {
-          this.scene.add(this.objects[c].mesh);
+          if (this.objects[c].mesh) {
+            this.scene.add(this.objects[c].mesh);
+          }
         }
       },
 

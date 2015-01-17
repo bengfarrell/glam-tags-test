@@ -36,7 +36,11 @@ Element providing solution to no problem in particular.
 
       ready: function() {
         this.texture = this.querySelectorAll('glam-texture');
-        this.material = new THREE.MeshBasicMaterial( { map: this.texture[0].get() } );
+        if (this.texture.length > 0) {
+          this.material = new THREE.MeshBasicMaterial( { map: this.texture[0].get() } );
+        } else {
+          this.material = new THREE.MeshBasicMaterial();
+        }
       },
 
       get: function() {
